@@ -1,0 +1,67 @@
+service: StackDemoAdmin
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: us-east-1
+  stage: ${opt:stage}
+  versionFunctions: false
+  stackName: StackDemoAdmin
+
+package:
+  individually: true
+
+
+custom:
+  ACCOUNT_ID: !Ref AWS::AccountId
+  REGION: !Ref AWS::Region
+  STAGE: ${self:provider.stage}
+  APPLICATION: 'StackDemo-Admin'
+
+resources:
+  Resources:
+    F2Role:
+      Type: AWS::IAM::Role
+      Properties:
+        RoleName: ${self:custom.STAGE}-F2Role_
+        AssumeRolePolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Principal:
+                Service:
+                  - lambda.amazonaws.com 
+              Action:
+                - sts:AssumeRole
+    CloudwatchAccessPolicy:
+      Type: AWS::IAM::Policy
+      Properties:
+        PolicyName: ${self:custom.STAGE}-CloudwatchAccessPolicy_
+        PolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Action:
+                - 'logs:CreateLogStream'
+                - 'logs:PutLogEvents'
+              Resource: '*'
+        Roles:
+          - !Ref F2Role
+
+
+
+functions:
+  F2Function:
+    name: ${self:custom.STAGE}-F2Function_
+    runtime: nodejs18.x
+    handler: './functions/f2.handler'
+    role: 'arn:aws:iam::021891572638:role/masterrole'
+    package:
+      patterns:
+        - 'functions/f2.handler.js'
+    events:
+      - http:
+          path: '/admins/f2'
+          method: 'get'
+          cors: true
