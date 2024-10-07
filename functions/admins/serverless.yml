@@ -7,7 +7,7 @@ provider:
   region: us-east-1
   stage: ${opt:stage}
   versionFunctions: false
-  stackName: StackDemoAdmin
+  stackName: ${opt:stage}-StackDemoAdmin
 
 package:
   individually: true
@@ -24,7 +24,7 @@ resources:
     F2Role:
       Type: AWS::IAM::Role
       Properties:
-        RoleName: ${self:custom.STAGE}-F2Role_
+        RoleName: ${self:custom.STAGE}-F2Role_S
         AssumeRolePolicyDocument:
           Version: '2012-10-17'
           Statement:
@@ -37,7 +37,7 @@ resources:
     CloudwatchAccessPolicy:
       Type: AWS::IAM::Policy
       Properties:
-        PolicyName: ${self:custom.STAGE}-CloudwatchAccessPolicy_
+        PolicyName: ${self:custom.STAGE}-CloudwatchAccessPolicy_S
         PolicyDocument:
           Version: '2012-10-17'
           Statement:
@@ -53,7 +53,7 @@ resources:
 
 functions:
   F2Function:
-    name: ${self:custom.STAGE}-F2Function_
+    name: ${self:custom.STAGE}-F2Function_S
     runtime: nodejs18.x
     handler: './functions/f2.handler'
     role: 'arn:aws:iam::021891572638:role/masterrole'
