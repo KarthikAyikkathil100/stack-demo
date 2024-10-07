@@ -74,7 +74,7 @@
     "F2FunctionLogGroup": {
       "Type": "AWS::Logs::LogGroup",
       "Properties": {
-        "LogGroupName": "/aws/lambda/dev-F2Function_"
+        "LogGroupName": "/aws/lambda/dev-F2Function_S"
       }
     },
     "F2FunctionLambdaFunction": {
@@ -84,11 +84,11 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/StackDemoAdmin/dev/1728294300794-2024-10-07T09:45:00.794Z/F2Function.zip"
+          "S3Key": "serverless/StackDemoAdmin/dev/1728299433795-2024-10-07T11:10:33.795Z/F2Function.zip"
         },
         "Handler": "./functions/f2.handler",
         "Runtime": "nodejs18.x",
-        "FunctionName": "dev-F2Function_",
+        "FunctionName": "dev-F2Function_S",
         "MemorySize": 1024,
         "Timeout": 6,
         "Role": "arn:aws:iam::021891572638:role/masterrole"
@@ -227,7 +227,7 @@
         "F2FunctionLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayDeployment1728294300217": {
+    "ApiGatewayDeployment1728299433240": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -280,7 +280,7 @@
     "F2Role": {
       "Type": "AWS::IAM::Role",
       "Properties": {
-        "RoleName": "dev-F2Role_",
+        "RoleName": "dev-F2Role_S",
         "AssumeRolePolicyDocument": {
           "Version": "2012-10-17",
           "Statement": [
@@ -302,7 +302,7 @@
     "CloudwatchAccessPolicy": {
       "Type": "AWS::IAM::Policy",
       "Properties": {
-        "PolicyName": "dev-CloudwatchAccessPolicy_",
+        "PolicyName": "dev-CloudwatchAccessPolicy_S",
         "PolicyDocument": {
           "Version": "2012-10-17",
           "Statement": [
