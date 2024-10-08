@@ -51,9 +51,9 @@ resources:
   Outputs:
     CloudwatchAccessPolicyARN:
       Value:
-          Fn::GetAtt:
-            - CloudwatchAccessPolicy
-            - Arn
+        Fn::GetAtt:
+          - CloudwatchAccessPolicy
+          - Arn
       Export:
         Name: ${self:custom.STAGE}-CloudwatchAccessPolicyARN
 
