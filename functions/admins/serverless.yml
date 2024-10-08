@@ -50,10 +50,7 @@ resources:
           - !Ref F2Role
   Outputs:
     CloudwatchAccessPolicyARN:
-      Value:
-        Fn::GetAtt:
-          - CloudwatchAccessPolicy
-          - Arn
+      Value: !Ref CloudwatchAccessPolicy
       Export:
         Name: ${self:custom.STAGE}-CloudwatchAccessPolicyARN
 
