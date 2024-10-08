@@ -32,7 +32,7 @@ resources:
     F1Role:
       Type: AWS::IAM::Role
       Properties:
-        RoleName: ${self:custom.STAGE}-F1Role
+        RoleName: ${self:custom.STAGE}-F1Role_
         AssumeRolePolicyDocument:
           Version: '2012-10-17'
           Statement:
@@ -45,7 +45,7 @@ resources:
     F2Role:
       Type: AWS::IAM::Role
       Properties:
-        RoleName: ${self:custom.STAGE}-F2Role
+        RoleName: ${self:custom.STAGE}-F2Role_
         AssumeRolePolicyDocument:
           Version: '2012-10-17'
           Statement:
@@ -58,7 +58,7 @@ resources:
     CloudwatchAccessPolicy:
       Type: AWS::IAM::Policy
       Properties:
-        PolicyName: ${self:custom.STAGE}-CloudwatchAccessPolicy
+        PolicyName: ${self:custom.STAGE}-CloudwatchAccessPolicy_
         PolicyDocument:
           Version: '2012-10-17'
           Statement:
@@ -75,7 +75,7 @@ resources:
 
 functions:
   F1Function:
-    name: ${self:custom.STAGE}-F1Function
+    name: ${self:custom.STAGE}-F1Function_
     runtime: nodejs18.x
     handler: './functions/f1.handler'
     role: F1Role
@@ -88,7 +88,7 @@ functions:
           method: 'get'
           cors: true
   F2Function:
-    name: ${self:custom.STAGE}-F2Function
+    name: ${self:custom.STAGE}-F2Function_
     runtime: nodejs18.x
     handler: './functions/f2.handler'
     role: F2Role
