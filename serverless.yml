@@ -13,6 +13,8 @@ package:
   patterns:
     - '!node_modules/**'
 
+plugins:
+  - serverless-plugin-split-stacks
 
 custom:
   ACCOUNT_ID: !Ref AWS::AccountId
