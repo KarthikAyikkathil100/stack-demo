@@ -23,8 +23,8 @@ custom:
   APPLICATION: 'StackDemo'
   splitStacks:
     perFunction: false
-    perType: false
-    perGroupFunction: true
+    perType: true
+    perGroupFunction: false
     nestedStackCount: 10
 
 resources:
