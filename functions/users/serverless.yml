@@ -42,6 +42,12 @@ resources:
               Resource: '*'
         Roles:
           - !Ref F1Role
+    NewCloudwatchAccessPolicy:
+      Type: AWS::IAM::Policy
+      Properties:
+        PolicyArn: !ImportValue ${self:custom.STAGE}-CloudwatchAccessPolicyARN
+        Roles:
+          - !Ref F1Role
     # Outputs:
     #   CloudwatchPolicyArn:
     #     Value: !Ref CloudwatchAccessPolicy
