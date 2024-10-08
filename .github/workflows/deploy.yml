@@ -3,8 +3,6 @@ name: Deployment Workflow
 on:
   push:
     branches:
-      - main
-      - staging
       - development
 
 jobs:
@@ -28,7 +26,7 @@ jobs:
 
       - name: Deploy
         run: |
-          parallel ::: "cd functions/admins && sls deploy --stage dev" "cd functions/users && sls deploy --stage dev"
+          sls deploy --stage dev
 
 
 

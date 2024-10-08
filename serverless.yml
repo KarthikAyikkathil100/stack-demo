@@ -1,4 +1,4 @@
-service: StackDemoUsers
+service: StackDemo
 frameworkVersion: '3'
 
 provider:
@@ -7,18 +7,36 @@ provider:
   region: us-east-1
   stage: ${opt:stage}
   versionFunctions: false
-  stackName: ${opt:stage}-StackDemoUser
 
 package:
   individually: true
 
+
+custom:
+  ACCOUNT_ID: !Ref AWS::AccountId
+  REGION: !Ref AWS::Region
+  STAGE: ${self:provider.stage}
+  APPLICATION: 'StackDemo'
 
 resources:
   Resources:
     F1Role:
       Type: AWS::IAM::Role
       Properties:
-        RoleName: ${self:custom.STAGE}-F1Role_S
+        RoleName: ${self:custom.STAGE}-F1Role
+        AssumeRolePolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Principal:
+                Service:
+                  - lambda.amazonaws.com 
+              Action:
+                - sts:AssumeRole
+    F2Role:
+      Type: AWS::IAM::Role
+      Properties:
+        RoleName: ${self:custom.STAGE}-F2Role
         AssumeRolePolicyDocument:
           Version: '2012-10-17'
           Statement:
@@ -31,7 +49,7 @@ resources:
     CloudwatchAccessPolicy:
       Type: AWS::IAM::Policy
       Properties:
-        PolicyName: ${self:custom.STAGE}-CloudwatchAccessPolicy_S
+        PolicyName: ${self:custom.STAGE}-CloudwatchAccessPolicy
         PolicyDocument:
           Version: '2012-10-17'
           Statement:
@@ -41,36 +59,35 @@ resources:
                 - 'logs:PutLogEvents'
               Resource: '*'
         Roles:
+          - !Ref F2Role
           - !Ref F1Role
-    NewCloudwatchAccessPolicy:
-      Type: AWS::IAM::Policy
-      Properties:
-        PolicyArn: !ImportValue ${self:custom.STAGE}-CloudwatchAccessPolicyARN
-        Roles:
-          - !Ref F1Role
-    # Outputs:
-    #   CloudwatchPolicyArn:
-    #     Value: !Ref CloudwatchAccessPolicy
-    #     Export: ${self:custom.STAGE}-CloudwatchPolicyArn
 
-custom:
-  ACCOUNT_ID: !Ref AWS::AccountId
-  REGION: !Ref AWS::Region
-  STAGE: ${self:provider.stage}
-  APPLICATION: 'StackDemo-Users'
 
 
 functions:
   F1Function:
-    name: ${self:custom.STAGE}-F1Function_S
+    name: ${self:custom.STAGE}-F1Function
     runtime: nodejs18.x
     handler: './functions/f1.handler'
-    role: 'arn:aws:iam::021891572638:role/masterrole'
+    role: F1Role
     package:
       patterns:
         - 'functions/f1.handler.js'
     events:
       - http:
           path: '/users/f1'
+          method: 'get'
+          cors: true
+  F2Function:
+    name: ${self:custom.STAGE}-F2Function
+    runtime: nodejs18.x
+    handler: './functions/f2.handler'
+    role: F2Role
+    package:
+      patterns:
+        - 'functions/f2.handler.js'
+    events:
+      - http:
+          path: '/admins/f2'
           method: 'get'
           cors: true
