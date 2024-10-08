@@ -42,10 +42,10 @@ resources:
               Resource: '*'
         Roles:
           - !Ref F1Role
-    Outputs:
-      CloudwatchPolicyArn:
-        Value: !Ref CloudwatchAccessPolicy
-        Export: ${self:custom.STAGE}-CloudwatchPolicyArn
+    # Outputs:
+    #   CloudwatchPolicyArn:
+    #     Value: !Ref CloudwatchAccessPolicy
+    #     Export: ${self:custom.STAGE}-CloudwatchPolicyArn
 
 custom:
   ACCOUNT_ID: !Ref AWS::AccountId

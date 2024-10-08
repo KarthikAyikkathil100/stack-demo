@@ -28,7 +28,9 @@ jobs:
 
       - name: Deploy
         run: |
-          parallel ::: "cd functions/admins && sls deploy --stage dev" "cd functions/users && sls deploy --stage dev"
+          parallel ::: 
+            "cd functions/admins && sls deploy --stage dev" 
+            "cd functions/users && sls deploy --stage dev"
 
 
 
