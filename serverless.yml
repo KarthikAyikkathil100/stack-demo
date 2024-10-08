@@ -25,6 +25,7 @@ custom:
     perFunction: false
     perType: false
     perGroupFunction: true
+    nestedStackCount: 10
 
 resources:
   Resources:
