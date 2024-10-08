@@ -26,6 +26,7 @@ custom:
     perType: true
     perGroupFunction: false
     nestedStackCount: 10
+    force: true
 
 resources:
   Resources:
@@ -81,7 +82,7 @@ functions:
     role: F1Role
     package:
       patterns:
-        - 'functions/f1.handler.js'
+        - 'functions/f1.js'
     events:
       - http:
           path: '/users/f1'
@@ -94,7 +95,7 @@ functions:
     role: F2Role
     package:
       patterns:
-        - 'functions/f2.handler.js'
+        - 'functions/f2.js'
     events:
       - http:
           path: '/admins/f2'
