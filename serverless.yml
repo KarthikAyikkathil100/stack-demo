@@ -10,6 +10,8 @@ provider:
 
 package:
   individually: true
+  patterns:
+    - '!node_modules/**'
 
 
 custom:
@@ -17,6 +19,10 @@ custom:
   REGION: !Ref AWS::Region
   STAGE: ${self:provider.stage}
   APPLICATION: 'StackDemo'
+  splitStacks:
+    perFunction: false
+    perType: false
+    perGroupFunction: true
 
 resources:
   Resources:
