@@ -17,9 +17,9 @@ jobs:
       - name: Install Serverless Framework
         run: npm install -g serverless@3.38.0
       
-      # - name: Install Serverless Framework
-      #   run: |
-      #      sls plugin install --name serverless-plugin-split-stacks --stage dev
+      - name: Install Serverless Framework
+        run: |
+           sls plugin install --name serverless-plugin-split-stacks --stage dev
       
       - name: AWS config
         env:
