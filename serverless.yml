@@ -1,4 +1,4 @@
-service: StackDemoNew
+service: StackDemoNewOne
 frameworkVersion: '3'
 
 provider:
