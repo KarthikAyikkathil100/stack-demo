@@ -18,13 +18,13 @@ custom:
   REGION: !Ref AWS::Region
   STAGE: ${self:provider.stage}
   APPLICATION: 'StackDemo'
-  splitStacks:
-    perFunction: true
-    nestedStackCount: 100
-    force: true
+  # splitStacks:
+  #   perFunction: true
+  #   nestedStackCount: 100
+  #   force: true
 
-plugins:
-  - serverless-plugin-split-stacks
+# plugins:
+#   - serverless-plugin-split-stacks
 
 resources:
   Resources:
