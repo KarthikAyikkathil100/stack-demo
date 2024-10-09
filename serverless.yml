@@ -17,7 +17,7 @@ custom:
   ACCOUNT_ID: !Ref AWS::AccountId
   REGION: !Ref AWS::Region
   STAGE: ${self:provider.stage}
-  APPLICATION: 'StackDemo'
+  APPLICATION: 'StackDemoOne'
   splitStacks:
     perFunction: true
     nestedStackCount: 100
