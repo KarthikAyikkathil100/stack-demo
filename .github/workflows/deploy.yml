@@ -17,6 +17,10 @@ jobs:
       - name: Install Serverless Framework
         run: npm install -g serverless@3.38.0
       
+      - name: Install Serverless Framework
+        run: |
+           sls plugin install --name serverless-plugin-split-stacks --stage dev
+      
       - name: AWS config
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_KEY }}
@@ -26,6 +30,6 @@ jobs:
 
       - name: Deploy
         run: |
-          parallel ::: "cd functions/admins && sls deploy --stage dev" "cd functions/users && sls deploy --stage dev"
+          sls deploy --stage dev
 
 
