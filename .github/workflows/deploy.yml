@@ -3,8 +3,6 @@ name: Deployment Workflow
 on:
   push:
     branches:
-      - main
-      - staging
       - development
 
 jobs:
@@ -18,7 +16,10 @@ jobs:
 
       - name: Install Serverless Framework
         run: npm install -g serverless@3.38.0
-      
+
+      - name: Install Dependencies
+        run: npm install
+    
       - name: AWS config
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_KEY }}
@@ -32,3 +33,4 @@ jobs:
 
 
 
+ 
