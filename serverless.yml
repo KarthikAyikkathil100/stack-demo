@@ -20,9 +20,7 @@ custom:
   APPLICATION: 'StackDemo'
   splitStacks:
     perFunction: true
-    perType: false
-    perGroupFunction: false
-    nestedStackCount: 10
+    nestedStackCount: 100
     force: true
 
 plugins:

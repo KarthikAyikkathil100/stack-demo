@@ -94,7 +94,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/StackDemoNew/dev/1728387780295-2024-10-08T11:43:00.295Z/F1Function.zip"
+          "S3Key": "serverless/StackDemoNew/dev/1728454607287-2024-10-09T06:16:47.287Z/F1Function.zip"
         },
         "Handler": "./functions/f1.handler",
         "Runtime": "nodejs18.x",
@@ -120,7 +120,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/StackDemoNew/dev/1728387780295-2024-10-08T11:43:00.295Z/F2Function.zip"
+          "S3Key": "serverless/StackDemoNew/dev/1728454607287-2024-10-09T06:16:47.287Z/F2Function.zip"
         },
         "Handler": "./functions/f2.handler",
         "Runtime": "nodejs18.x",
@@ -394,7 +394,7 @@
         "F2FunctionLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayDeployment1728387779504": {
+    "ApiGatewayDeployment1728454606496": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
