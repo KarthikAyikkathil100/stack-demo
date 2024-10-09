@@ -23,8 +23,8 @@ custom:
     nestedStackCount: 100
     force: true
 
-plugins:
-  - serverless-plugin-split-stacks
+# plugins:
+#   - serverless-plugin-split-stacks
 
 resources:
   Resources:
